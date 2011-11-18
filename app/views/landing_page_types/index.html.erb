@@ -1,0 +1,23 @@
+<h1>Listing landing_page_types</h1>
+
+<table>
+  <tr>
+    <th>Type</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @landing_page_types.each do |landing_page_type| %>
+  <tr>
+    <td><%= landing_page_type.type %></td>
+    <td><%= link_to 'Show', landing_page_type %></td>
+    <td><%= link_to 'Edit', edit_landing_page_type_path(landing_page_type) %></td>
+    <td><%= link_to 'Destroy', landing_page_type, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Landing page type', new_landing_page_type_path %>

@@ -1,0 +1,29 @@
+<h1>Listing landing_pages</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Url</th>
+    <th>Content</th>
+    <th>ScreenShot</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @landing_pages.each do |landing_page| %>
+  <tr>
+    <td><%= landing_page.title %></td>
+    <td><%= landing_page.url %></td>
+    <td><%= landing_page.content %></td>
+    <td><%= image_tag landing_page.screen_shot.thumb.url %></td>
+    <td><%= link_to 'Show', landing_page %></td>
+    <td><%= link_to 'Edit', edit_landing_page_path(landing_page) %></td>
+    <td><%= link_to 'Destroy', landing_page, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Landing page', new_landing_page_path %>

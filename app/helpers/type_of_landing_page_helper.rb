@@ -1,0 +1,2 @@
+module TypeOfLandingPageHelper
+end
