@@ -1,29 +1,64 @@
-<h1>Listing landing_pages</h1>
-
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Url</th>
-    <th>Content</th>
-    <th>ScreenShot</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @landing_pages.each do |landing_page| %>
-  <tr>
-    <td><%= landing_page.title %></td>
-    <td><%= landing_page.url %></td>
-    <td><%= landing_page.content %></td>
-    <td><%= image_tag landing_page.screen_shot.thumb.url %></td>
-    <td><%= link_to 'Show', landing_page %></td>
-    <td><%= link_to 'Edit', edit_landing_page_path(landing_page) %></td>
-    <td><%= link_to 'Destroy', landing_page, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Landing page', new_landing_page_path %>
+<div class="row">
+  <div class="columns nine">
+    <div class="row">
+      <h1>Listing Landing Pages</h1>
+      <% @landing_pages.each_with_index do |landing_page, index| %>
+        <% if landing_page == @landing_pages.first %>
+          <div class="row pad-bot">
+            <div class="twelve inpad bigbox">
+              <div class="date">
+                <%= landing_page.created_at.to_date() .to_formatted_s(:long_ordinal) %>
+              </div>
+              <%= image_tag landing_page.screen_shot.bigthumb.url, :class => "border" %>
+              <h3><%= landing_page.title %></h3>
+            </div>
+          </div>
+        <% else %>
+          <%= "<div class='row pad-bot'>".html_safe if (oddeven(index) == "odd") %>
+            <div class="columns six inpad smallbox">
+              <%= image_tag landing_page.screen_shot.thumb.url, :class => "border" %>
+              <h4><%= landing_page.title %></h4>
+            </div>
+          <%= "</div>".html_safe if (oddeven(index) == "even") %>
+        <% end %>
+      <% end %>
+      <%= link_to 'New Landing page', new_landing_page_path %>
+    </div>
+  </div>
+  <div class="columns three">
+    <h2>SideBar</h2>
+    <h4>Popular Tags</h4>
+    <ul id="tags">
+      <li>
+        <a href="#" class="tag">
+    			<span class="tag_name">Infomercial</span>
+    			<span class="tag_count">5</span>
+  		  </a>
+  		</li>
+      <li>
+        <a href="#" class="tag">
+    			<span class="tag_name">lead capture</span>
+    			<span class="tag_count">24</span>
+  		  </a>
+      </li>
+      <li>
+        <a href="#" class="tag">
+    			<span class="tag_name">video</span>
+    			<span class="tag_count">24</span>
+  		  </a>
+      </li>
+      <li>
+        <a href="#" class="tag">
+    			<span class="tag_name">design</span>
+    			<span class="tag_count">24</span>
+  		  </a>
+      </li>
+      <li>
+        <a href="#" class="tag">
+    			<span class="tag_name">funds</span>
+    			<span class="tag_count">24</span>
+  		  </a>
+      </li>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,150 @@
+/*COLORS*/
+$text_color: 					#4B3614;
+$anchor_color: 				#C33E0F;
+$anchor_color_light:  lighten($anchor_color, 20%);
+$bg_color: 						#f7f7f7;
+$ft_color:						#cccccc;
+
+/*MIXINS*/
+@mixin rounded($radius: 6px) {
+  border-radius: $radius;
+	-o-border-radius: $radius;
+	-ms-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -webkit-border-radius: $radius;
+}
+@mixin shadow($color-rgba: rgba(0, 0, 0, 0.1)) {
+	box-shadow: 				 0 1px 4px $color-rgba;
+	-o-box-shadow: 			 0 1px 4px $color-rgba;
+	-moz-box-shadow: 		 0 1px 4px $color-rgba;
+	-webkit-box-shadow:  0 1px 4px $color-rgba;
+}
+
+@mixin inshadow($color: #000) {
+	box-shadow: 				inset 0px 0px 8px $color;
+	-o-box-shadow: 			inset 0px 0px 8px $color;
+	-moz-box-shadow: 		inset 0px 0px 8px $color;
+	-webkit-box-shadow: inset 0px 0px 8px $color;
+}
+@mixin roundshadow($color: #c6cddc) {
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1) inset, -8px -8px 0 0 $color, 8px 8px 0 0 $color, 8px 0 0 0 $color, 0 8px 0 0 $color, 8px -8px 0 0 $color, -8px 8px 0 0 $color;
+	-o-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1) inset, -8px -8px 0 0 $color, 8px 8px 0 0 $color, 8px 0 0 0 $color, 0 8px 0 0 $color, 8px -8px 0 0 $color, -8px 8px 0 0 $color;
+	-ms-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1) inset, -8px -8px 0 0 $color, 8px 8px 0 0 $color, 8px 0 0 0 $color, 0 8px 0 0 $color, 8px -8px 0 0 $color, -8px 8px 0 0 $color;
+	-moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1) inset, -8px -8px 0 0 $color, 8px 8px 0 0 $color, 8px 0 0 0 $color, 0 8px 0 0 $color, 8px -8px 0 0 $color, -8px 8px 0 0 $color;
+	-webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1) inset, -8px -8px 0 0 $color, 8px 8px 0 0 $color, 8px 0 0 0 $color, 0 8px 0 0 $color, 8px -8px 0 0 $color, -8px 8px 0 0 $color;
+}
+@mixin shadowinset($color: #c6cddc) {
+	box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1) inset;
+	-o-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1) inset, -8px -8px 0 0 $color, 8px 8px 0 0 $color, 8px 0 0 0 $color, 0 8px 0 0 $color, 8px -8px 0 0 $color, -8px 8px 0 0 $color;
+	-ms-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1) inset, -8px -8px 0 0 $color, 8px 8px 0 0 $color, 8px 0 0 0 $color, 0 8px 0 0 $color, 8px -8px 0 0 $color, -8px 8px 0 0 $color;
+	-moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1) inset, -8px -8px 0 0 $color, 8px 8px 0 0 $color, 8px 0 0 0 $color, 0 8px 0 0 $color, 8px -8px 0 0 $color, -8px 8px 0 0 $color;
+	-webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1) inset, -8px -8px 0 0 $color, 8px 8px 0 0 $color, 8px 0 0 0 $color, 0 8px 0 0 $color, 8px -8px 0 0 $color, -8px 8px 0 0 $color;
+}
+@mixin gradiant($color1: $anchor_color_light, $color2: $anchor_color) {
+	background-image: linear-gradient(				 top, $color1 0%, $color2 100%);
+	background-image: -o-linear-gradient(			 top, $color1 0%, $color2 100%);
+	background-image: -moz-linear-gradient(		 top, $color1 0%, $color2 100%);
+	background-image: -webkit-linear-gradient( top, $color1 0%, $color2 100%);
+	background-image: -ms-linear-gradient(		 top, $color1 0%, $color2 100%);
+}   
+@mixin textshadow(){
+	text-shadow: 0 1px rgba(0,0,0,0.4);
+}
+
+
+
+body {
+	background-image:url(bg.jpg);
+}
+
+#header {
+	height:70px;
+	background:url(bg-head.jpg);
+	h1{
+		margin:15px 0 0;
+		height:43px;
+		text-indent:-9999px;
+		background:url(logo.png) no-repeat;
+	}
+}
+
+nav#head {
+	ul {
+		float:right;
+		margin:25px 0 0;
+		li{
+			float:left;
+			padding:0 15px;
+			&:last-child {
+				padding-right:0;}
+			a {
+				font-size:16px;
+				padding:8px 12px;
+				color:#fff;
+				&:hover {
+					@include rounded(4px);
+					background:$anchor_color;
+				}
+			}
+		}
+	}
+}
+
+.bigbox{
+	position:relative;
+	.date {
+		position:absolute;
+		background:url(date-bg2.png) no-repeat;
+		height:36px;
+		width:220px;
+		top:100px;
+		left:-6px;
+		color:#fff;
+		padding:7px 0 0 15px;
+		font-size:16px;
+		@include textshadow();}
+	h3 {
+		padding:6px 0 0;
+		color:#681408;
+	}
+}
+
+.inpad {
+	background:#fff;
+	padding-top:10px;
+	padding-bottom:10px;
+	@include rounded(4px);
+	@include shadow();
+}
+
+img.border {
+}
+
+.inpad {
+	background:#fff;
+	padding-top:10px;
+	padding-bottom:10px;
+	@include rounded(4px);
+	@include shadow();
+}
+.tag 							{ 
+	background: url(tag.png) no-repeat 0 0; 
+	color: #3f3f3f; 
+	float: left; 
+	height: 25px; 
+	line-height: 1; 
+	margin: 5px; 
+	display:none;
+	padding: 0 5px 0 8px; 
+	position: relative; 
+	text-decoration: none; }
+.tag:hover 				{ 
+	cursor: pointer; }
+.tag:active 			{ 
+	top: 1px; }
+.tag span 				{ 
+	display: block; float: left; }
+.tag_name 				{ 
+	background: url(tag.png) no-repeat 100% -25px; height: 19px; padding: 6px 10px 0 0; position: relative; text-shadow: 0 1px 1px #fff; z-index: 10; }
+.tag_count 				{ 
+	background: url(tag.png) no-repeat 100% -50px; color: #fff; height: 19px; padding: 5px 10px 0; position: absolute; right: 0; text-shadow: 0 -1px 0 #c54a0c; top: 1px; z-index: 5; }

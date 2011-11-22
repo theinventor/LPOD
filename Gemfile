@@ -22,6 +22,8 @@ gem 'imgkit'
 gem "rmagick"
 gem 'carrierwave'
 
+gem 'zurb-foundation'
+
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

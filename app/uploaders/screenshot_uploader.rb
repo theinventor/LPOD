@@ -4,6 +4,7 @@ class ScreenshotUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
   include CarrierWave::RMagick
+  include Magick
   # include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
@@ -29,10 +30,14 @@ class ScreenshotUploader < CarrierWave::Uploader::Base
   # end
 
   # Create different versions of your uploaded files:
-  version :thumb do
-    process :resize_to_fit => [400, 300]
+  version :bigthumb do
+    process :resize_to_fill => [1140, 600, Magick::NorthWestGravity]
   end
-
+  
+  version :thumb do
+    process :resize_to_fill => [468,335, Magick::NorthWestGravity]
+  end
+  
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   # def extension_white_list
@@ -44,5 +49,13 @@ class ScreenshotUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
+  
+  private
+  
+  def crop_to_top(w,h)
+    manipulate! do |img|
+      new_frame = Image.new(w, h, NorthWestGravity)
+    end
+  end
 
 end

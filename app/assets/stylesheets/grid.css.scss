@@ -1,0 +1,45 @@
+.row {
+	margin: 0 auto;
+  max-width: 1140px;
+  min-width: 727px;
+  width: 100%;
+}
+img {
+	height: auto;
+	&.border {
+		max-width:99.9%;
+		border:1px solid #eee;}
+}
+$width: 3%;
+.inpad {padding:0 $width/2.15;}
+.inpad.four { 			width: 30.75 	- $width	 !important; }
+.inpad.five { 			width: 39.45 	- $width	 !important; }
+.inpad.six { 				width: 48			- $width	 !important; }
+.inpad.seven { 			width: 56.75	- $width	 !important; }
+.inpad.twelve { 		width: 100		- $width	 !important; }
+
+$big_pad	: 50px;
+$pad			:	20px;
+$small_pad:	10px;
+
+.relative {position:relative;}
+.marg-top { margin-top:$pad !important;}
+.marg-top-half { margin-top:$small_pad !important;}
+.marg-bot { margin-bottom:$pad !important;}
+.marg-bot-half { margin-bottom:$small_pad !important;}
+.pad-top-big { padding-top:$big_pad !important;}
+.pad-top { padding-top:$pad !important;}
+.pad-top-half { padding-top:$small_pad !important;}
+.pad-bot-big { padding-bottom:$big_pad !important;}
+.pad-bot { padding-bottom:$pad !important;}
+.pad-bot-half { padding-bottom:$small_pad !important;}
+.pad-left {padding-left:3.8% !important;}
+.pad-right {padding-right:3.8% !important;}
+.left {float:left;}
+.right {float:right;}
+.text-left {text-align:left;}
+.text-right {text-align:right;}
+.text-center {text-align:center;}
+.clear {clear:both;}
+.hide-now {display:none;}
+.hidden {visibility:hidden;}

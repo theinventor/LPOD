@@ -6,4 +6,20 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require foundation
 //= require_tree .
+
+$(window).load(function() {
+  $('.tag').each(function(i) {
+  	setTimeout(function() {
+  		$('.tag:eq('+i+')').css({ display: 'block', opacity: 0 }).stop().animate({ opacity: 1 }); 
+  	}, 250 * (i + 1))
+  });
+	$('.tag').hover(function() {
+		$(this).stop().animate({ paddingRight: ($('.tag_count', this).outerWidth() - 6) });
+	}, function() {
+		$(this).stop().animate({ paddingRight: 6 });
+	});
+
+	$('.tag').click(false);
+});

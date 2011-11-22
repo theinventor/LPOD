@@ -1,33 +1,32 @@
 <p id="notice"><%= notice %></p>
-
-<p>
-  <b>Title:</b>
-  <%= @landing_page.title %>
-</p>
-<p>
-  <b>Description:</b>
-  <%= @landing_page.description %>
-</p>
-<p>
-  <b>Url:</b>
-  <%= @landing_page.url %>
-</p>
-
-<p>
-  <b>Content:</b>
-  <%= @landing_page.content %>
-</p>
-<p>
-  <b>Industry:</b>
-  <%= @landing_page.industry.industry %>
-</p>
-<p>
-  <b>Landing Page Type:</b>
-  <%= @landing_page.landing_page_type.types%>
-</p>
-<div class="screen-shot">
-  <%= image_tag @landing_page.screen_shot.thumb.url.to_s %>
+<div class="row twelve">
+  <div class="columns six">
+    <h2>
+      <%= link_to "#{@landing_page.title}", @landing_page.url %>
+    </h2>
+    <p>
+      <%= @landing_page.description %>
+    </p>
+    <p>
+      <b>Content:</b>
+      <%= @landing_page.content %>
+    </p>
+    <p>
+      <b>Industry:</b>
+      <%= @landing_page.industry.industry %>
+    </p>
+    <p>
+      <b>Landing Page Type:</b>
+      <%= @landing_page.landing_page_type.types%>
+    </p>
+    <%= link_to 'Edit', edit_landing_page_path(@landing_page) %> |
+    <%= link_to 'Back', landing_pages_path %>
+  </div>
+  <div class=" columns six screen-shot">
+    <%= image_tag @landing_page.screen_shot.thumb.url.to_s, :class => "border" %>
+    <%= image_tag @landing_page.screen_shot.thumb.url.to_s, :class => "border"%>
+  </div>
 </div>
 
-<%= link_to 'Edit', edit_landing_page_path(@landing_page) %> |
-<%= link_to 'Back', landing_pages_path %>
+
+

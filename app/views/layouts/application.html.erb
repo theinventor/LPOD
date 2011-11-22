@@ -1,14 +1,24 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>LPOD</title>
-  <%= stylesheet_link_tag    "application" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+<%= render "layouts/head" %>
+<header id="header" class="container">
+  <div class="row">
+    <div class="columns six">
+      <h1><a href="#">Landing Page of the Day</a></h1>
+    </div>
+    <div class="Navigation columns six">
+      <nav id="head">
+        <ul class="right">
+          <li><a href="#">Industries</a></li>
+          <li><a href="#">Types</a></li>
+          <li><a href="#">Landing Pages</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+<div class="container">
+  <%= yield %>
+</div>
 
-<%= yield %>
-
+<%= render "layouts/foot" %>
 </body>
 </html>
