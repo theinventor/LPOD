@@ -11,16 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111118203743) do
+ActiveRecord::Schema.define(:version => 20111127063428) do
 
   create_table "industries", :force => true do |t|
-    t.string   "industry"
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-# Could not dump table "landing_page_types" because of following StandardError
-#   Unknown type 'sting' for column 'types'
+  create_table "landing_page_types", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 # Could not dump table "landing_pages" because of following StandardError
 #   Unknown type 'sting' for column 'title'

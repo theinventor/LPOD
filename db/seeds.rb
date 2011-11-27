@@ -3,7 +3,7 @@
 #
 # Examples:
 #
-Industry.create([{industry: "Automotive"}, {industry: "Health Care"}, {industry: "Weight Loss"}, {industry: "Insurance"}, {industry: "Online Services"}, {industry: "Travel"}])
+Industry.create([{name: "Automotive"}, {name: "Health Care"}, {name: "Weight Loss"}, {name: "Insurance"}, {name: "Online Services"}, {name: "Travel"}])
 
-LandingPageType.create([{types: "Click Through"}, {types: "Lead Capture"}, {types: "Infomercial"},{types: "Viral"}, {types: "Microsite"}, {types: "Product Detail"}, {types: "Homepage"}])
+LandingPageType.create([{name: "Click Through"}, {name: "Lead Capture"}, {name: "Infomercial"},{name: "Viral"}, {name: "Microsite"}, {name: "Product Detail"}, {name: "Homepage"}])
 #   Mayor.create(name: 'Emanuel', city: cities.first)

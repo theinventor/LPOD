@@ -2,7 +2,9 @@ class LandingPagesController < ApplicationController
 
   def index
     @landing_pages = LandingPage.all
-
+    @industries = Industry.joins(:landing_pages).select('distinct industries.*').limit(10) 
+    @lpt = LandingPageType.joins(:landing_pages).select('distinct landing_page_types.*').limit(10)
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @landing_pages }
@@ -71,6 +73,12 @@ class LandingPagesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to landing_pages_url }
       format.json { head :ok }
+    end
+  end 
+  
+  def vote
+    @landing_page = LandingPage.find(params[:id]) 
+    respond_to do |format|
     end
   end
 end

@@ -54,17 +54,24 @@ $ft_color:						#cccccc;
 
 
 body {
-	background-image:url(bg.jpg);
-}
+	background-image:url(bg.jpg); 
+	font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif; 
+	font-weight:300;
+}                              
+
 
 #header {
 	height:70px;
-	background:url(bg-head.jpg);
+	background:url(bg-head.jpg) left bottom;
 	h1{
 		margin:15px 0 0;
 		height:43px;
 		text-indent:-9999px;
 		background:url(logo.png) no-repeat;
+		a {
+			height:43px;
+			width:337px;
+			display:block;}
 	}
 }
 
@@ -82,23 +89,26 @@ nav#head {
 				padding:8px 12px;
 				color:#fff;
 				&:hover {
-					@include rounded(4px);
+					@include rounded(4px); 
+					@include inshadow(darken($anchor_color,8%));
 					background:$anchor_color;
 				}
 			}
 		}
 	}
 }
-
-.bigbox{
+.field {
+	padding-bottom:10px;
+}
+.bigbox, .smallbox{
 	position:relative;
 	.date {
 		position:absolute;
-		background:url(date-bg2.png) no-repeat;
+		background:url(date-bg3.png) no-repeat right top;
 		height:36px;
-		width:220px;
+		width:210px;
 		top:100px;
-		left:-6px;
+		left:-11px;
 		color:#fff;
 		padding:7px 0 0 15px;
 		font-size:16px;
@@ -107,15 +117,9 @@ nav#head {
 		padding:6px 0 0;
 		color:#681408;
 	}
-}
+} 
+.smallbox .date{width:130px;top:40px;left:-6px;}
 
-.inpad {
-	background:#fff;
-	padding-top:10px;
-	padding-bottom:10px;
-	@include rounded(4px);
-	@include shadow();
-}
 
 img.border {
 }
@@ -126,25 +130,43 @@ img.border {
 	padding-bottom:10px;
 	@include rounded(4px);
 	@include shadow();
+} 
+.sidebar {
+	h4 {padding-top:20px;font-size:16px;font-weight:900;font-style:italic;}
 }
-.tag 							{ 
+.addbox {
+	background:#efefef;
+	width:100%;
+	height:200px;
+	vertical-align:middle;
+	@include inshadow(#ddd);
+	@include rounded(3px); 
+	h3 {
+		color:lighten($text_color, 40%);
+		font-size:16px;
+		text-align:center;
+		vertical-align:middle;} 
+} 
+
+.tag { 
 	background: url(tag.png) no-repeat 0 0; 
 	color: #3f3f3f; 
 	float: left; 
 	height: 25px; 
 	line-height: 1; 
-	margin: 5px; 
+	margin: 5px 5px 5px 0; 
 	display:none;
 	padding: 0 5px 0 8px; 
 	position: relative; 
-	text-decoration: none; }
-.tag:hover 				{ 
+	text-decoration: none; 
+	&:hover	{ 
 	cursor: pointer; }
-.tag:active 			{ 
+	&:active { 
 	top: 1px; }
-.tag span 				{ 
+	& span{ 
 	display: block; float: left; }
-.tag_name 				{ 
+	.tag_name { 
 	background: url(tag.png) no-repeat 100% -25px; height: 19px; padding: 6px 10px 0 0; position: relative; text-shadow: 0 1px 1px #fff; z-index: 10; }
-.tag_count 				{ 
-	background: url(tag.png) no-repeat 100% -50px; color: #fff; height: 19px; padding: 5px 10px 0; position: absolute; right: 0; text-shadow: 0 -1px 0 #c54a0c; top: 1px; z-index: 5; }
+	.tag_count { 
+	background: url(tag.png) no-repeat 100% -50px; color: #fff;font-weight:900; height: 19px; padding: 5px 10px 0; position: absolute; right: 0; text-shadow: 0 -1px 0 #c54a0c; top: 1px; z-index: 5; }
+}

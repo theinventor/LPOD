@@ -24,6 +24,10 @@ gem 'carrierwave'
 
 gem 'zurb-foundation'
 
+gem 'heroku'
+
+
+
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

@@ -1,31 +1,37 @@
-<p id="notice"><%= notice %></p>
-<div class="row twelve">
-  <div class="columns six">
+<div class="row">
+  <% flash.each do |key, msg| %>
+    <div id="alert-box_<%= "#{key}" %>" class="alert-box marg-top">
+      <%= msg %>
+      <a href="" class="close">&times;</a>
+    </div>    
+  <% end %>
+</div>
+<div class="row twelve pad-top">
+  <div class=" columns nine screen-shot">
     <h2>
       <%= link_to "#{@landing_page.title}", @landing_page.url %>
     </h2>
+    <div class="inpad bigbox">
+      <%= image_tag @landing_page.screen_shot.url.to_s, :class => "border" %>
+    </div>
+  </div>
+  <div class="columns three">
+    
     <p>
       <%= @landing_page.description %>
     </p>
     <p>
-      <b>Content:</b>
-      <%= @landing_page.content %>
-    </p>
-    <p>
       <b>Industry:</b>
-      <%= @landing_page.industry.industry %>
+      <%= @landing_page.industry.name %>
     </p>
     <p>
-      <b>Landing Page Type:</b>
-      <%= @landing_page.landing_page_type.types%>
+      <b>Type of Landing Page:</b>
+      <%= @landing_page.landing_page_type.name%>
     </p>
     <%= link_to 'Edit', edit_landing_page_path(@landing_page) %> |
     <%= link_to 'Back', landing_pages_path %>
   </div>
-  <div class=" columns six screen-shot">
-    <%= image_tag @landing_page.screen_shot.thumb.url.to_s, :class => "border" %>
-    <%= image_tag @landing_page.screen_shot.thumb.url.to_s, :class => "border"%>
-  </div>
+
 </div>
 
 
