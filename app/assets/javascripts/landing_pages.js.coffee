@@ -6,4 +6,6 @@ jQuery ->
 		source: $('#landing_page_industry_name').data('ac-source')
 	$('#landing_page_landing_page_type_name').autocomplete
 		source: $('#landing_page_landing_page_type_name').data('autocomplete-source')
-	$('#landing_page_release_date').datepicker();
+	$('#landing_page_release_date').datepicker({
+		dateFormat: 'yy-mm-dd'
+	});

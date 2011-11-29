@@ -5,20 +5,22 @@
         <div class="row pad-bot">
           <div class="twelve inpad bigbox">
             <div class="date">
-              <%= landing_page.created_at.to_date().to_formatted_s(:long_ordinal) %>
+              <%= landing_page.release_date.to_date().to_formatted_s(:long_ordinal) %>
             </div>
             <%= link_to image_tag(landing_page.screen_shot.bigthumb.url, :class => "border"), landing_page %>
             <h3 class="pad-top-half"><%= link_to landing_page.title, landing_page %></h3>
+            <p>thumbs up <%= "Dave" if @landing_page.score %></p>
           </div>
         </div>
       <% else %>
         <%= "<div class='row pad-bot'>".html_safe if (oddeven(index) == "odd") %>
           <div class="columns six inpad smallbox">
             <div class="date">
-              <%= landing_page.created_at.to_date().to_formatted_s(:rfc822)  %>
+              <%= landing_page.release_date.to_date().to_formatted_s(:rfc822)  %>
             </div>
             <%= link_to image_tag(landing_page.screen_shot.thumb.url, :class => "border"), landing_page %>
             <h4><%= link_to landing_page.title, landing_page %></h4>
+            
           </div>
         <%= "</div>".html_safe if (oddeven(index) == "even" || landing_page == @landing_pages.last ) %>
       <% end %>
@@ -26,31 +28,6 @@
     <%= link_to 'New Landing page', new_landing_page_path %>  
   </div>
   <div class="columns three sidebar">
-    <div class="addbox">
-      <h3 class="pad-top-big">Your Add Goes here</h3>
-    </div>
-    <h4>Industries</h4>
-    <ul id="tags"> 
-      <% @industries.each do |lp| %>
-        <li>
-          <a href="#" class="tag">
-      			<span class="tag_name"><%= lp.name %> </span>
-      			<span class="tag_count"><%= lp.landing_pages.count %> </span>
-    		  </a>
-    		</li>
-      <% end %>   
-    </ul>
-    
-    <h4 class="clear">Types of Landing Pages</h4>
-    <ul id="tags"> 
-      <% @lpt.each do |lp| %>
-        <li>
-          <a href="#" class="tag">
-      			<span class="tag_name"><%= lp.name %> </span>
-      			<span class="tag_count"><%= lp.landing_pages.count %> </span>
-    		  </a>
-    		</li>
-      <% end %>   
-    </ul>
+    <%= render "sidebar" %>
   </div>
 </div>

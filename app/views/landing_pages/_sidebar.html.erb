@@ -1,0 +1,26 @@
+<div class="addbox">
+  <h3 class="pad-top-big">Your Add Goes here</h3>
+</div>
+<h4>Industries</h4>
+<ul id="tags"> 
+  <% @industries.each do |lp| %>
+    <li>
+      <a href="#" class="tag">
+  			<span class="tag_name"><%= lp.name %> </span>
+  			<span class="tag_count"><%= lp.landing_pages.count %> </span>
+		  </a>
+		</li>
+  <% end %>   
+</ul>
+
+<h4 class="clear">Types of Landing Pages</h4>
+<ul id="tags"> 
+  <% @lpt.each do |lp| %>
+    <li>
+      <a href="#" class="tag">
+  			<span class="tag_name"><%= lp.name %> </span>
+  			<span class="tag_count"><%= lp.landing_pages.count %> </span>
+		  </a>
+		</li>
+  <% end %>   
+</ul>

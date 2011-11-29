@@ -38,6 +38,10 @@ class ScreenshotUploader < CarrierWave::Uploader::Base
     process :resize_to_fill => [468,335, Magick::NorthWestGravity]
   end
   
+  version :smallthumb do
+    process :resize_to_fill => [115,110, Magick::NorthWestGravity]
+  end
+  
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   # def extension_white_list

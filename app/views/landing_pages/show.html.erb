@@ -15,21 +15,15 @@
       <%= image_tag @landing_page.screen_shot.url.to_s, :class => "border" %>
     </div>
   </div>
-  <div class="columns three">
-    
+  <div class="columns three sidebar">
+    <%= render "sidebar" %>
     <p>
       <%= @landing_page.description %>
-    </p>
-    <p>
-      <b>Industry:</b>
-      <%= @landing_page.industry.name %>
-    </p>
-    <p>
-      <b>Type of Landing Page:</b>
-      <%= @landing_page.landing_page_type.name%>
-    </p>
-    <%= link_to 'Edit', edit_landing_page_path(@landing_page) %> |
-    <%= link_to 'Back', landing_pages_path %>
+    </p> 
+    <div class="clear">
+       <%= link_to 'Edit', edit_landing_page_path(@landing_page) %> |
+       <%= link_to 'Back', landing_pages_path %>
+    </div>
   </div>
 
 </div>

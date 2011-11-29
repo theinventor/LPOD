@@ -2,8 +2,8 @@ class LandingPagesController < ApplicationController
 
   def index
     @landing_pages = LandingPage.all
-    @industries = Industry.joins(:landing_pages).select('distinct industries.*').limit(10) 
-    @lpt = LandingPageType.joins(:landing_pages).select('distinct landing_page_types.*').limit(10)
+    
+    sidebar
     
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +13,8 @@ class LandingPagesController < ApplicationController
 
   def show
     @landing_page = LandingPage.find(params[:id])
-
+    sidebar
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @landing_page }
@@ -35,12 +36,8 @@ class LandingPagesController < ApplicationController
 
   def create
     @landing_page = LandingPage.new(params[:landing_page])
-    kit = IMGKit.new("#{@landing_page.url}")
-    path = "#{Rails.root}/public/uploads/tmp/#{@landing_page.title.downcase.gsub(" ","_")}.png"
-    file = kit.to_file(path)
-    @landing_page.screen_shot = File.open(path)
-    @landing_page.save!
     
+     
     respond_to do |format|
       if @landing_page.save
         format.html { redirect_to @landing_page, notice: 'Landing page was successfully created.' }
@@ -77,8 +74,24 @@ class LandingPagesController < ApplicationController
   end 
   
   def vote
-    @landing_page = LandingPage.find(params[:id]) 
-    respond_to do |format|
+    @landing_page = LandingPage.find(params[:id])
+    @vote = Vote.new
+    @vote.value = "1"
+    r = Random.new
+    
+    @vote.ip = (request.ip + Random.rand(1000-1).to_s)
+    @vote.landing_page_id = @landing_page.id
+    @vote.save! 
+     
+    respond_to do |format| 
+      format.json {head:ok}
     end
+  end 
+  
+  private
+  
+  def sidebar
+    @industries = Industry.joins(:landing_pages).select('distinct industries.*').limit(10) 
+    @lpt = LandingPageType.joins(:landing_pages).select('distinct landing_page_types.*').limit(10)
   end
 end

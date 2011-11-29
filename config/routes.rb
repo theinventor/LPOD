@@ -5,6 +5,9 @@ LPOD::Application.routes.draw do
 
   resources :landing_pages
 
+  match 'landing_pages/:id/vote' => 'landing_pages#vote'
+  
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
