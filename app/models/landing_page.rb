@@ -3,9 +3,7 @@ class LandingPage < ActiveRecord::Base
   belongs_to  :industry
   has_many    :votes 
   
-  has_event_calendar
-  
-  has_event_calendar :start_at_field  => 'created_at', :end_at_field => 'created_at'   
+  has_event_calendar :start_at_field  => 'release_date', :end_at_field => 'release_date'   
    
   validates :title,  :presence => true
   validates :url,  :presence => true, :uniqueness => true
@@ -15,7 +13,7 @@ class LandingPage < ActiveRecord::Base
   
   mount_uploader :screen_shot, ScreenshotUploader
   
-  after_create :landing_page_thumbnails
+  after_create :landing_page_thumbnails, :calendar_dates
   
   scope :default, order("release_date desc")
   
@@ -54,5 +52,9 @@ class LandingPage < ActiveRecord::Base
     self.score = 0
     self.save!
   end 
+  
+  def calendar_dates
+    date = self.release_date
+  end
   
 end

@@ -73,8 +73,12 @@ class LandingPagesController < ApplicationController
   end 
   
   def landing_page_calendar
-    @landing_page_calendar = LandingPage.all
-    @date = params[:month] ? Date.parse(params[:month]) : Date.today 
+    @month = (params[:month] || (Time.zone || Time).now.month).to_i
+    @year = (params[:year] || (Time.zone || Time).now.year).to_i
+
+    @shown_month = Date.civil(@year, @month)
+
+    @event_strips = LandingPage.event_strips_for_month(@shown_month)
   end
   
 end

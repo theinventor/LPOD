@@ -9,6 +9,6 @@ jQuery ->
 	$('#landing_page_release_date').datepicker
 		dateFormat: 'yy-mm-dd' 
 	$(".thumbs-up").ajaxComplete -> 
-		num = $(this).children().text() 
+		num = $(this).children('span').html()
 		$(this).children('span').html(parseInt(num) + 1)   
 	 

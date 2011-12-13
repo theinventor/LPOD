@@ -1,14 +1,19 @@
-<div class="row">
-  <div class="seven columns">
-    <h1>New Landing Page</h1>
+<% content_for :head do %>
+  <%= stylesheet_link_tag 'event_calendar', 'jquery-ui.custom.css' %>
+  <%= javascript_include_tag 'event_calendar.js' %>
+<% end %>
 
+<div class="row">
+    <h1>New Landing Page</h1> 
+</div>
+<div class="row"> 
+  <div class="four columns">
     <%= render 'form' %>
 
     <%= link_to 'Back', landing_pages_path %>
   </div> 
-  <div class="columns five">
-    <h3>the place for a calendar</h3> 
-   
+  <div class="columns eight pad-top">
+    <%= raw(event_calendar) %>  
   </div>
 </div>
 
