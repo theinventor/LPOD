@@ -23,6 +23,7 @@ class LandingPagesController < ApplicationController
 
   def create
     @landing_page = LandingPage.new(params[:landing_page])
+    landing_page_calendar 
     
     respond_to do |format|
       if @landing_page.save
