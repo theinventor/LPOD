@@ -24,9 +24,7 @@ gem 'carrierwave'
 
 gem 'zurb-foundation'
 
-gem 'table_builder'
-
-gem 'heroku'
+gem 'event-calendar', :require => 'event_calendar'
 
 
 

@@ -1,7 +1,11 @@
 class LandingPage < ActiveRecord::Base
   belongs_to  :landing_page_type
   belongs_to  :industry
-  has_many    :votes    
+  has_many    :votes 
+  
+  has_event_calendar
+  
+  has_event_calendar :start_at_field  => 'release_date', :end_at_field => 'release_date'   
    
   validates :title,  :presence => true
   validates :url,  :presence => true, :uniqueness => true
