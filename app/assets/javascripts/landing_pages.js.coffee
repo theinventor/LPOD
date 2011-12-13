@@ -10,5 +10,5 @@ jQuery ->
 		dateFormat: 'yy-mm-dd' 
 	$(".thumbs-up").ajaxComplete -> 
 		num = $(this).children().text() 
-		$(this).children('span').html(parseInt(num) + 1) 
-	
+		$(this).children('span').html(parseInt(num) + 1)   
+	 

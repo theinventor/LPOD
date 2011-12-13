@@ -5,7 +5,7 @@ class LandingPage < ActiveRecord::Base
   
   has_event_calendar
   
-  has_event_calendar :start_at_field  => 'release_date', :end_at_field => 'release_date'   
+  has_event_calendar :start_at_field  => 'created_at', :end_at_field => 'created_at'   
    
   validates :title,  :presence => true
   validates :url,  :presence => true, :uniqueness => true
