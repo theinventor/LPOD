@@ -18,6 +18,7 @@ class LandingPagesController < ApplicationController
 
   def edit
     @landing_page = LandingPage.find(params[:id])
+    landing_page_calendar 
   end
 
   def create

@@ -1,6 +1,16 @@
-<h1>Editing landing_page</h1>
 
-<%= render 'form' %>
 
-<%= link_to 'Show', @landing_page %> |
-<%= link_to 'Back', landing_pages_path %>
+<div class="row">
+    <h1>Editing landing_page</h1>  
+</div>
+<div class="row"> 
+  <div class="four columns">
+    <%= render 'form' %>
+
+    <%= link_to 'Show', @landing_page %> |
+    <%= link_to 'Back', landing_pages_path %>>
+  </div> 
+  <div class="columns eight pad-top">
+    <%= raw(event_calendar) %>  
+  </div>
+</div>
