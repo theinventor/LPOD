@@ -21,6 +21,6 @@ $(window).load(function() {
 	}, function() {
 		$(this).stop().animate({ paddingRight: 6 });
 	});
+	
 
-	$('.tag').click(false);
 });

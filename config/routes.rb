@@ -3,9 +3,13 @@ LPOD::Application.routes.draw do
 
   resources :landing_page_types
 
-  resources :landing_pages
+  resources :landing_pages do
+    collection  do
+      post :vote
+    end
+  end
 
-  match 'landing_pages/:id/vote' => 'landing_pages#vote'
+  # match 'landing_pages/vote/:id' => 'landing_pages#vote'   
   
 
 

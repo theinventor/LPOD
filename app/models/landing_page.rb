@@ -13,8 +13,11 @@ class LandingPage < ActiveRecord::Base
   
   after_create :landing_page_thumbnails
   
-  default_scope :order => 'created_at DESC'
-  # scope :industry_side_bar Industry.joins(:landing_pages).select('distinct industries.*').limit(10)   
+  scope :default, order("release_date desc")
+  
+  scope :calendar, where("release_date > ?", Time.now - 30.days).default 
+
+  # default_scope :order => 'created_at DESC' 
  
   def update_score
     vote_counts = Vote.where('landing_page_id = ?', self.id).count
@@ -27,6 +30,7 @@ class LandingPage < ActiveRecord::Base
   end
   
   def industry_name=(name)
+    name = name.titleize
     self.industry = Industry.find_or_create_by_name(name) if name.present?
   end
   
@@ -42,7 +46,8 @@ class LandingPage < ActiveRecord::Base
     kit = IMGKit.new("#{self.url}")
     path = "#{Rails.root}/public/uploads/tmp/#{self.title.downcase.gsub(" ","_")}.png"
     file = kit.to_file(path)
-    self.screen_shot = File.open(path)
+    self.screen_shot = File.open(path) 
+    self.score = 0
     self.save!
   end 
   

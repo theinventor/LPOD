@@ -1,10 +1,39 @@
-<p id="notice"><%= notice %></p>
+  <div class="row pad-top">
+  <div class="columns nine">
+    <% @industry.each_with_index do |landing_page, index| %>
+      <% if landing_page == @industry.first %>
+        <div class="row pad-bot">
+          <div class="twelve inpad bigbox">
+            <div class="date">
+              <%= landing_page.release_date.to_date().to_formatted_s(:long_ordinal) %>
+            </div>
+            <%= link_to image_tag(landing_page.screen_shot.bigthumb.url, :class => "border"), landing_page %>
+            <h3 class="pad-top-half"><%= link_to landing_page.title, landing_page %></h3>
+            <ul>
+              <li><%= link_to({:controller => "landing_pages", :action => "vote", :id => landing_page}, :class => "thumbs-up", :remote => true) do %>
+                Thumbs Up <span><%= landing_page.score %></span>
+              <% end %>
+            </li>
+            </ul>
+          </div>
+        </div>
+      <% else %>
+        <%= "<div class='row pad-bot'>".html_safe if (oddeven(index) == "odd") %>
+          <div class="columns six inpad smallbox">
+            <div class="date">
+              <%= landing_page.release_date.to_date().to_formatted_s(:rfc822)  %>
+            </div>
+            <%= link_to image_tag(landing_page.screen_shot.thumb.url, :class => "border"), landing_page %>
+            <h4><%= link_to landing_page.title, landing_page %></h4>
+            
+          </div>
+        <%= "</div>".html_safe if (oddeven(index) == "even" || landing_page == @industry.last ) %>
+      <% end %>
+    <% end %>
+    <%= link_to 'New Landing page', new_landing_page_path %>  
+  </div>
+  <div class="columns three sidebar">
 
-<p>
-  <b>Industry:</b>
-  <%= @industry.name %>
-</p>
+  </div>
+</div>
 
-
-<%= link_to 'Edit', edit_industry_path(@industry) %> |
-<%= link_to 'Back', industries_path %>

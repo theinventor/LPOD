@@ -1,33 +1,19 @@
 class LandingPagesController < ApplicationController
-
+  respond_to :html, :json, :js
+  
   def index
-    @landing_pages = LandingPage.all
-    
+    @landing_pages = LandingPage.default 
     sidebar
-    
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @landing_pages }
-    end
   end
 
   def show
     @landing_page = LandingPage.find(params[:id])
     sidebar
-    
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @landing_page }
-    end
   end
 
   def new
-    @landing_page = LandingPage.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @landing_page }
-    end
+    @landing_page = LandingPage.new 
+    landing_page_calendar
   end
 
   def edit
@@ -37,10 +23,9 @@ class LandingPagesController < ApplicationController
   def create
     @landing_page = LandingPage.new(params[:landing_page])
     
-     
     respond_to do |format|
       if @landing_page.save
-        format.html { redirect_to @landing_page, notice: 'Landing page was successfully created.' }
+        format.html { redirect_to @landing_page, notice: 'The Landing Page was successfully created.' }
         format.json { render json: @landing_page, status: :created, location: @landing_page }
       else
         format.html { render action: "new" }
@@ -76,22 +61,20 @@ class LandingPagesController < ApplicationController
   def vote
     @landing_page = LandingPage.find(params[:id])
     @vote = Vote.new
-    @vote.value = "1"
-    r = Random.new
+    @vote.value = "1" 
     
     @vote.ip = (request.ip + Random.rand(1000-1).to_s)
     @vote.landing_page_id = @landing_page.id
     @vote.save! 
-     
+    
     respond_to do |format| 
       format.json {head:ok}
-    end
+    end 
   end 
   
-  private
-  
-  def sidebar
-    @industries = Industry.joins(:landing_pages).select('distinct industries.*').limit(10) 
-    @lpt = LandingPageType.joins(:landing_pages).select('distinct landing_page_types.*').limit(10)
+  def landing_page_calendar
+    @landing_page_calendar = LandingPage.all
+    @date = params[:month] ? Date.parse(params[:month]) : Date.today 
   end
+  
 end

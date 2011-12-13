@@ -13,7 +13,7 @@ class IndustriesController < ApplicationController
   # GET /industries/1
   # GET /industries/1.json
   def show
-    @industry = Industry.find(params[:id])
+    @industry = LandingPage.where(:industry_id => params[:id]).default
 
     respond_to do |format|
       format.html # show.html.erb

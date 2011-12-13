@@ -24,6 +24,8 @@ gem 'carrierwave'
 
 gem 'zurb-foundation'
 
+gem 'table_builder'
+
 gem 'heroku'
 
 

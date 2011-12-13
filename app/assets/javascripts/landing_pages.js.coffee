@@ -6,6 +6,9 @@ jQuery ->
 		source: $('#landing_page_industry_name').data('ac-source')
 	$('#landing_page_landing_page_type_name').autocomplete
 		source: $('#landing_page_landing_page_type_name').data('autocomplete-source')
-	$('#landing_page_release_date').datepicker({
-		dateFormat: 'yy-mm-dd'
-	});
+	$('#landing_page_release_date').datepicker
+		dateFormat: 'yy-mm-dd' 
+	$(".thumbs-up").ajaxComplete -> 
+		num = $(this).children().text() 
+		$(this).children('span').html(parseInt(num) + 1) 
+	

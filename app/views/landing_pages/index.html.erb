@@ -9,7 +9,12 @@
             </div>
             <%= link_to image_tag(landing_page.screen_shot.bigthumb.url, :class => "border"), landing_page %>
             <h3 class="pad-top-half"><%= link_to landing_page.title, landing_page %></h3>
-            <p>thumbs up <%= "Dave" if @landing_page.score %></p>
+            <ul>
+              <li><%= link_to({:controller => "landing_pages", :action => "vote", :id => landing_page}, :class => "thumbs-up", :remote => true) do %>
+                Thumbs Up <span><%= landing_page.score %></span>
+              <% end %>
+            </li>
+            </ul>
           </div>
         </div>
       <% else %>
