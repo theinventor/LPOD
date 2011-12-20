@@ -9,7 +9,7 @@
 //= require jquery_ujs
 //= require foundation 
 //= require_tree .
-//= require self    
+//= require_self    
 
 $(window).load(function() {
   $('.tag').each(function(i) {
