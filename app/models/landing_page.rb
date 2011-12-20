@@ -48,8 +48,8 @@ class LandingPage < ActiveRecord::Base
     kit = IMGKit.new("#{self.url}")
     # path = "#{Rails.root}/public/uploads/tmp/#{self.title.downcase.gsub(" ","_")}.png" 
     path = "#{Rails.root}/tmp/#{self.title.downcase.gsub(" ","_")}.png"
-    file = kit.to_file(path) 
-    self.screen_shot = File.open(file) 
+    file = kit.to_file(path)
+    self.screen_shot = File.open(path) 
     self.score = 0
     self.save!
   end 
