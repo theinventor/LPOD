@@ -7,8 +7,9 @@
 //= require jquery
 //= require jquery-ui
 //= require jquery_ujs
-//= require foundation
+//= require foundation 
 //= require_tree .
+//= require self    
 
 $(window).load(function() {
   $('.tag').each(function(i) {
