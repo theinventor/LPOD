@@ -47,9 +47,10 @@ class LandingPage < ActiveRecord::Base
   def landing_page_thumbnails
     kit = IMGKit.new("#{self.url}")
     # path = "#{Rails.root}/public/uploads/tmp/#{self.title.downcase.gsub(" ","_")}.png" 
-    path = "#{Rails.root}/tmp/#{self.title.downcase.gsub(" ","_")}.png"
-    file = kit.to_file(path)
-    self.screen_shot = File.open(path) 
+    # path = "#{Rails.root}/tmp/#{self.title.downcase.gsub(" ","_")}.png" 
+    img = kit.to_img
+    # file = kit.to_file(path)
+    self.screen_shot = img 
     self.score = 0
     self.save!
   end 
