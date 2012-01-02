@@ -48,7 +48,7 @@ class LandingPage < ActiveRecord::Base
     kit = IMGKit.new("#{self.url}")
     # path = "#{Rails.root}/public/uploads/tmp/#{self.title.downcase.gsub(" ","_")}.png" 
     path = "#{Rails.root}/tmp/#{self.title.downcase.gsub(" ","_")}.png" 
-    # img = kit.to_img 
+    # img = kit.to_img  
     file = kit.to_file(path)  
     self.screen_shot = File.open(path) 
     self.score = 0
@@ -59,4 +59,4 @@ class LandingPage < ActiveRecord::Base
     date = self.release_date
   end
   
-end
+end  
