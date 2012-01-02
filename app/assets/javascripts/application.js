@@ -5,17 +5,16 @@
 // the compiled file.
 //
 //= require jquery
-//= require jquery-ui
 //= require jquery_ujs
-//= require foundation 
-//= require_tree .
-//= require_self    
+//= require jquery-ui 
+//= require foundation
+//= require_tree .  
 
 $(window).load(function() {
   $('.tag').each(function(i) {
   	setTimeout(function() {
   		$('.tag:eq('+i+')').css({ display: 'block', opacity: 0 }).stop().animate({ opacity: 1 }); 
-  	}, 250 * (i + 1))
+  	}, 250 * (i + 1));
   });
 	$('.tag').hover(function() {
 		$(this).stop().animate({ paddingRight: ($('.tag_count', this).outerWidth() - 6) });

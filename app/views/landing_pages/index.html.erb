@@ -5,7 +5,7 @@
         <div class="row pad-bot">
           <div class="twelve inpad bigbox">
             <div class="date">
-              <%= landing_page.release_date.to_date().to_formatted_s(:long_ordinal) %>
+              <%= landing_page.release_date.to_date().to_formatted_s(:long_ordinal)  unless landing_page.release_date.nil?%>
             </div>
             <%= link_to image_tag(landing_page.screen_shot.bigthumb.url, :class => "border"), landing_page %>
             <h3 class="pad-top-half"><%= link_to landing_page.title, landing_page %></h3>
