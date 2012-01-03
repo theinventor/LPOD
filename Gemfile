@@ -23,7 +23,12 @@ gem 'fog'
 
 gem 'zurb-foundation'
 
-gem 'event-calendar', :require => 'event_calendar'
+gem 'event-calendar', :require => 'event_calendar' 
+
+gem 'nokogiri'
+gem 'mechanize'
+
+gem 'will_paginate', '~> 3.0'
 
 group :production do
   gem 'pg'

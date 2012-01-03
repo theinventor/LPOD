@@ -8,7 +8,9 @@ jQuery ->
 		source: $('#landing_page_landing_page_type_name').data('autocomplete-source')
 	$('#landing_page_release_date').datepicker
 		dateFormat: 'yy-mm-dd' 
-	$(".thumbs-up").ajaxComplete -> 
+	$(".thumbs-up.add").ajaxComplete -> 
 		num = $(this).children('span').html()
-		$(this).children('span').html(parseInt(num) + 1)   
+		$(this).children('span').html(parseInt(num) + 1)
+		$(this).removeClass('add')
+		return false   
 	 

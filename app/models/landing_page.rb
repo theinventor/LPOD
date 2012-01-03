@@ -7,13 +7,16 @@ class LandingPage < ActiveRecord::Base
    
   validates :title,  :presence => true
   validates :url,  :presence => true, :uniqueness => true
+  validates :keyword,  :presence => true 
   validates :industry_name,  :presence => true
   validates :landing_page_type_name, :presence => true
   # validates :release_date, :presence => true, :uniqueness => true
   
   mount_uploader :screen_shot, ScreenshotUploader
   
-  after_create :landing_page_thumbnails, :calendar_dates
+  after_create :landing_page_thumbnails, :calendar_dates 
+  # :get_cpc 
+  # after_update :get_cpc
   
   scope :default, order("release_date desc")
   
@@ -45,19 +48,26 @@ class LandingPage < ActiveRecord::Base
   end
   
   def landing_page_thumbnails
-    kit = IMGKit.new("#{self.url}")
-    # path = "#{Rails.root}/public/uploads/tmp/#{self.title.downcase.gsub(" ","_")}.png" 
-    path = "#{Rails.root}/public/#{self.title.downcase.gsub(" ","_")}.png" 
-    # img = kit.to_img  
+    kit = IMGKit.new("#{self.url}") 
+    path = "#{Rails.root}/public/#{self.title.downcase.gsub(" ","_")}.png"  
     file = kit.to_file(path)  
     self.screen_shot = File.open(path) 
-    # self.screen_shot = img.to_sym 
     self.score = 0
     self.save! 
   end 
   
   def calendar_dates
     date = self.release_date
-  end
+  end 
+  
+  # def get_cpc 
+  #   keyword = self.keyword.gsub(" ","+")
+  #   url = "http://www.keywordspy.com/research/search.aspx?q=#{keyword}&type=keywords"
+  #   url = "http://www.semrush.com/search.php?q=#{keyword}&db=us"
+  #   doc = Nokogiri::HTML(open(url))
+  #   # cpc = doc.at_css(".alter:nth-child(2) td:nth-child(2)").text  
+  #   cpc = doc.at_css("#container_url_01").text 
+  #   self.update_attribute(:keyword_cpc, cpc) 
+  # end
   
 end  

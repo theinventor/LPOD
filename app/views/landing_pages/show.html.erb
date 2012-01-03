@@ -12,7 +12,13 @@
       <%= link_to "#{@landing_page.title}", @landing_page.url %>
     </h2>
     <div class="inpad bigbox">
-      <%= image_tag @landing_page.screen_shot.url.to_s, :class => "border" %>
+      <%= image_tag @landing_page.screen_shot.url.to_s, :class => "border" %> 
+      <ul class="details right pad-top">
+        <li>
+          <%= @landing_page.keyword unless @landing_page.keyword.nil? %>
+          <%= @landing_page.keyword_cpc unless @landing_page.keyword_cpc.nil? %>
+        </li>
+      </ul>
     </div>
   </div>
   <div class="columns three sidebar">
