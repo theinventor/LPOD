@@ -22,7 +22,17 @@
     </div>
   </div>
   <div class="columns three sidebar">
-    <%= render "sidebar" %>
+    <%= render "advert" %>
+    <h4><span>More: </span><%= @landing_page.industry.name %></h4>
+    <ul class="block-grid two-up">
+      <%= sidebar_lp(@lp_industry_prev) %>                                                                                                            
+      <%= sidebar_lp(@lp_industry_next) %>
+    </ul>
+    <h4><span>More: </span><%= @landing_page.landing_page_type.name %></h4>
+    <ul class="block-grid two-up">
+      <%= sidebar_lp(@lp_type_prev) %>                                                                                                            
+      <%= sidebar_lp(@lp_type_next) %>
+    </ul>
     <p>
       <%= @landing_page.description %>
     </p> 
@@ -33,6 +43,3 @@
   </div>
 
 </div>
-
-
-

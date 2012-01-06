@@ -8,9 +8,11 @@ class LandingPagesController < ApplicationController
 
   def show
     @landing_page = LandingPage.find(params[:id])
-    @landing_page_next = LandingPage.next(@landing_page).first
-    @landing_page_prev = LandingPage.prev(@landing_page).first
-    @sidebar = sidebar(@landing_page_prev.indusrty)
+    @lp_industry_next = LandingPage.industry_id(@landing_page.industry_id).next(@landing_page.release_date).first
+    @lp_industry_prev = LandingPage.industry_id(@landing_page.industry_id).prev(@landing_page.release_date).first
+    
+    @lp_type_next =     LandingPage.landing_page_type_id(@landing_page.landing_page_type_id).next(@landing_page.release_date).first
+    @lp_type_prev =     LandingPage.landing_page_type_id(@landing_page.landing_page_type_id).prev(@landing_page.release_date).first
   end
 
   def new

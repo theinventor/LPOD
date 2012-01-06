@@ -15,20 +15,25 @@ class LandingPage < ActiveRecord::Base
   mount_uploader :screen_shot, ScreenshotUploader
   
   after_create :landing_page_thumbnails, :calendar_dates 
-  # :get_cpc 
   # after_update :get_cpc
   
   scope :default, order("release_date desc")
   
   scope :calendar, where("release_date > ?", Time.now - 30.days).default
    
-  scope :prev, lambda { |current| 
-    where('id < ?', current).limit(1).offset(0).order("id DESC")
-  }
+  scope :prev, lambda { |current| where('release_date < ?', current).order("release_date DESC")}
   
-  scope :next, lambda { |current| where('id > ?', current).limit(1).order("id ASC")} 
+  scope :next, lambda { |current| where('release_date > ?', current).order("release_date ASC")} 
 
   # default_scope :order => 'created_at DESC' 
+  
+  def self.industry_id(industry_id)
+    where(:industry_id => industry_id)
+  end 
+  
+  def self.landing_page_type_id(landing_page_type)
+    where(:landing_page_type_id => landing_page_type)
+  end
   
   def self.prev_next(current)
     where('id < ?', current).limit(1)
