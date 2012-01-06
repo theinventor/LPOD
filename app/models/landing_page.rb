@@ -20,9 +20,19 @@ class LandingPage < ActiveRecord::Base
   
   scope :default, order("release_date desc")
   
-  scope :calendar, where("release_date > ?", Time.now - 30.days).default 
+  scope :calendar, where("release_date > ?", Time.now - 30.days).default
+   
+  scope :prev, lambda { |current| 
+    where('id < ?', current).limit(1).offset(0).order("id DESC")
+  }
+  
+  scope :next, lambda { |current| where('id > ?', current).limit(1).order("id ASC")} 
 
   # default_scope :order => 'created_at DESC' 
+  
+  def self.prev_next(current)
+    where('id < ?', current).limit(1)
+  end 
  
   def update_score
     vote_counts = Vote.where('landing_page_id = ?', self.id).count

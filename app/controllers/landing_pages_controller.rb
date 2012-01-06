@@ -3,12 +3,14 @@ class LandingPagesController < ApplicationController
   
   def index
     @landing_pages = LandingPage.paginate(:page => params[:page]).per_page(5).default 
-    sidebar
+    @sidebar = sidebar(nil,nil)
   end
 
   def show
     @landing_page = LandingPage.find(params[:id])
-    sidebar
+    @landing_page_next = LandingPage.next(@landing_page).first
+    @landing_page_prev = LandingPage.prev(@landing_page).first
+    @sidebar = sidebar(@landing_page_prev.indusrty)
   end
 
   def new
