@@ -1,0 +1,19 @@
+<div class="row pad-bot">
+  <div class="twelve inpad bigbox">
+    <div class="date">
+      <%= format_date(landing_page.release_date) unless landing_page.release_date.nil? %>
+    </div>
+    <%= link_to image_tag(landing_page.screen_shot.bigthumb.url, :class => "border"), landing_page %>
+    <h3 class="pad-top-half left"><%= link_to landing_page.title, landing_page %></h3>
+    <ul class="details right pad-top">
+      <li>
+        <span>Cost Per Click: </span> <%= landing_page.keyword_cpc unless landing_page.keyword_cpc.nil? %>
+      </li>
+      <li>
+        <%= link_to({:controller => "landing_pages", :action => "vote", :id => landing_page}, :class => "thumbs-up add", :remote => true) do %>
+          Thumbs Up: <span><%= landing_page.score %></span>
+         <% end %>
+      </li>
+    </ul>
+  </div>
+</div>

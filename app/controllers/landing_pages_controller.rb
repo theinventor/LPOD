@@ -1,8 +1,8 @@
 class LandingPagesController < ApplicationController
   respond_to :html, :json, :js
   
-  def index
-    @landing_pages = LandingPage.paginate(:page => params[:page]).per_page(5).default 
+  def index  
+    @landing_pages = LandingPage.page(params[:page]).per_page(lp_per_page).default 
     @sidebar = sidebar(nil,nil)
   end
 
@@ -85,6 +85,15 @@ class LandingPagesController < ApplicationController
     @shown_month = Date.civil(@year, @month)
 
     @event_strips = LandingPage.event_strips_for_month(@shown_month)
+  end
+private
+  
+  def lp_per_page
+    if (params[:page].nil? || params[:page] <= "1") 
+      9
+    else
+      8
+    end
   end
   
 end

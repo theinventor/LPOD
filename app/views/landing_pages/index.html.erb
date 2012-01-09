@@ -1,48 +1,53 @@
 <div class="row pad-top">
-  <div class="columns nine">
-    <% @landing_pages.each_with_index do |landing_page, index| %>
-      <% if landing_page == @landing_pages.first %>
-        <div class="row pad-bot">
-          <div class="twelve inpad bigbox">
-            <div class="date">
-              <%= format_date(landing_page.release_date) unless landing_page.release_date.nil? %>
-            </div>
-            <%= link_to image_tag(landing_page.screen_shot.bigthumb.url, :class => "border"), landing_page %>
-            <h3 class="pad-top-half left"><%= link_to landing_page.title, landing_page %></h3>
-            <ul class="details right pad-top">
-              <li>
-                <span>Cost Per Click: </span> <%= landing_page.keyword_cpc unless landing_page.keyword_cpc.nil? %>
-              </li>
-              <li>
-                <%= link_to({:controller => "landing_pages", :action => "vote", :id => landing_page}, :class => "thumbs-up add", :remote => true) do %>
-                  Thumbs Up: <span><%= landing_page.score %></span>
-                 <% end %>
-              </li>
-            </ul>
+  <div class="columns nine"> 
+    <% if (params[:page].nil? || params[:page] <= "1") %> 
+      <% landing_page = @landing_pages.first %>
+      <div class="row pad-bot">
+        <div class="twelve inpad bigbox">
+          <div class="date">
+            <%= format_date(landing_page.release_date) unless landing_page.release_date.nil? %>
           </div>
+          <%= link_to image_tag(landing_page.screen_shot.bigthumb.url, :class => "border"), landing_page %>
+          <h3 class="pad-top-half left"><%= link_to landing_page.title, landing_page %></h3>
+          <ul class="details right pad-top">
+            <li>
+              <span>Cost Per Click: </span> <%= landing_page.keyword_cpc unless landing_page.keyword_cpc.nil? %>
+            </li>
+            <li>
+              <%= link_to({:controller => "landing_pages", :action => "vote", :id => landing_page}, :class => "thumbs-up add", :remote => true) do %>
+                Thumbs Up: <span><%= landing_page.score %></span>
+               <% end %>
+            </li>
+          </ul>
         </div>
-      <% else %>
-        <%= "<div class='row pad-bot'>".html_safe if (oddeven(index) == "odd") %>
-          <div class="columns six inpad smallbox">
-            <div class="date">
-              <%= format_date(landing_page.release_date)  %>
-            </div>
-            <%= link_to image_tag(landing_page.screen_shot.thumb.url, :class => "border"), landing_page %>
-            <h4><%= link_to landing_page.title, landing_page %></h4>
-            <ul class="details right pad-top">
-              <li>
-                <span>Cost Per Click: </span> <%= landing_page.keyword_cpc unless landing_page.keyword_cpc.nil? %>
-              </li>
-              <li>
-                <%= link_to({:controller => "landing_pages", :action => "vote", :id => landing_page}, :class => "thumbs-up add", :remote => true) do %>
-                  Thumbs Up: <span><%= landing_page.score %></span>
-                 <% end %>
-              </li>
-            </ul>
-          </div>
-        <%= "</div>".html_safe if (oddeven(index) == "even" || landing_page == @landing_pages.last ) %>
-      <% end %>
+      </div>
+      <% length = @landing_pages.length - 1 %>
+      <% @new_landing_pages = @landing_pages.pop(length).to_a %> 
+    <% else %>
+      <% @new_landing_pages = @landing_pages.to_a %>
     <% end %>
+    <ul class="block-grid two-up">
+      <% @new_landing_pages.each do |landing_page| %>
+        <li class="inpad smallbox">
+          <div class="date">
+            <%= format_date(landing_page.release_date)  %>
+          </div>
+          <%= link_to image_tag(landing_page.screen_shot.thumb.url, :class => "border"), landing_page %>
+          <h4><%= link_to landing_page.title, landing_page %></h4>
+          <ul class="details right pad-top">
+            <li>
+              <span>Cost Per Click: </span> <%= landing_page.keyword_cpc unless landing_page.keyword_cpc.nil? %>
+            </li>
+            <li>
+              <%= link_to({:controller => "landing_pages", :action => "vote", :id => landing_page}, :class => "thumbs-up add", :remote => true) do %>
+                Thumbs Up: <span><%= landing_page.score %></span>
+               <% end %>
+            </li>
+          </ul>
+        </li> 
+      <% end %>
+    </ul>
+
     <%= will_paginate @landing_pages %>
     <%= link_to 'New Landing page', new_landing_page_path %>  
   </div>
