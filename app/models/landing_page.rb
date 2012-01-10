@@ -16,7 +16,10 @@ class LandingPage < ActiveRecord::Base
   
   after_create :landing_page_thumbnails, :calendar_dates 
   # after_update :get_cpc
-  
+
+  #to use in home page, don't get stuff that shouldnt be released yet
+  scope :not_future, where("release_date < ?", Time.zone.now.to_date + 1.day)
+
   scope :default, order("release_date desc")
   
   scope :calendar, where("release_date > ?", Time.now - 30.days).default
