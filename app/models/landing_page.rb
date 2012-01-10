@@ -15,7 +15,9 @@ class LandingPage < ActiveRecord::Base
   mount_uploader :screen_shot, ScreenshotUploader
   
   after_create :landing_page_thumbnails, :calendar_dates 
-  # after_update :get_cpc
+
+  #added a tiny bit of error checking, so we can leave this active and see how it goes
+  after_update :get_cpc
 
   #to use in home page, don't get stuff that shouldnt be released yet
   scope :not_future, where("release_date < ?", Time.zone.now.to_date + 1.day)
@@ -76,16 +78,18 @@ class LandingPage < ActiveRecord::Base
   
   def calendar_dates
     date = self.release_date
-  end 
-  
-  # def get_cpc 
-  #   keyword = self.keyword.gsub(" ","+")
-  #   url = "http://www.keywordspy.com/research/search.aspx?q=#{keyword}&type=keywords"
-  #   url = "http://www.semrush.com/search.php?q=#{keyword}&db=us"
-  #   doc = Nokogiri::HTML(open(url))
-  #   # cpc = doc.at_css(".alter:nth-child(2) td:nth-child(2)").text  
-  #   cpc = doc.at_css("#container_url_01").text 
-  #   self.update_attribute(:keyword_cpc, cpc) 
-  # end
-  
-end  
+  end
+
+  def get_cpc
+    keyword2 = self.keyword.gsub(" ","+")
+    url = "http://www.keywordspy.com/research/search.aspx?q=#{keyword2}&type=keywords"
+    #url = "http://www.semrush.com/search.php?q=#{keyword}&db=us"
+    doc = Nokogiri::HTML(open(url))
+    cpc = doc.at_css(".alter:nth-child(2) td:nth-child(2)").text if doc.at_css(".alter:nth-child(2) td:nth-child(2)")
+    #cpc = doc.at_css("#container_url_01").text
+    #self.update_attribute(:keyword_cpc, cpc)
+    self.keyword_cpc = cpc
+    self.save
+  end
+
+end
