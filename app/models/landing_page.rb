@@ -1,7 +1,10 @@
 class LandingPage < ActiveRecord::Base
   belongs_to  :landing_page_type
   belongs_to  :industry
-  has_many    :votes 
+  has_many    :votes
+
+  extend FriendlyId
+  friendly_id :title, use: :slugged
   
   has_event_calendar :start_at_field  => 'release_date', :end_at_field => 'release_date'   
    
@@ -17,7 +20,7 @@ class LandingPage < ActiveRecord::Base
   after_create :landing_page_thumbnails, :calendar_dates 
 
   #added a tiny bit of error checking, so we can leave this active and see how it goes
-  after_update :get_cpc
+  #after_update :get_cpc
 
   #to use in home page, don't get stuff that shouldnt be released yet
   scope :not_future, where("release_date < ?", Time.zone.now.to_date + 1.day)

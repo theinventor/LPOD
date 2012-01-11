@@ -23,6 +23,8 @@ gem 'fog'
 
 gem 'zurb-foundation'
 
+gem 'friendly_id'
+
 gem 'event-calendar', :require => 'event_calendar' 
 
 gem 'nokogiri'
